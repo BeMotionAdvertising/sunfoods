@@ -1,0 +1,218 @@
+.what-we-do {
+  padding: 180px 5%;
+  background-color: #F7F7F7;
+}
+
+.what-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  align-items: center;
+}
+
+/* Image Stack (desktop) */
+.image-stack {
+  position: relative;
+  flex: 1;
+  min-width: 200px;
+}
+
+.wcard {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.wcard img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Desktop stacked positions */
+.card-large {
+  width: 270px;
+  margin-left: 220px;
+  margin-top: -80px;
+}
+
+.card-small {
+  width: 200px;
+  position: absolute;
+}
+
+.card-small.dal {
+  top: 60px;
+  margin-left: 100px;
+  height: 190px;
+}
+
+.card-small.pulav {
+  top: 220px;
+  left: 270px;
+  width: 226px;
+  height: 200px;
+}
+
+/* Right Content */
+.what-text {
+  flex: 1;
+  min-width: 300px;
+}
+
+.what-text h2 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.what-text h3 {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.what-text p {
+  color: #555;
+}
+
+.what-text ul {
+  list-style: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.what-text ul li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+}
+
+.what-text ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #FF6600;
+  font-size: 18px;
+}
+
+/* Button */
+.more-explore {
+  background: #7CC6F7;
+  color: #000;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 4px 0px #e2e4e6;
+  transition: all 0.2s ease-in-out;
+}
+
+.more-explore{
+  text-decoration: none;
+}
+.more-explore:active {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 0px #5aa6d4;
+}
+
+/* Pill container styles */
+.pill-container {
+  display: flex;
+  align-items: center;
+  border: 1px dashed #999;
+  border-radius: 50px;
+  overflow: hidden;
+  margin: 80px auto;
+  max-width: fit-content;
+}
+
+.pill-text {
+  padding: 10px 20px;
+  background: #fff;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+.pill-button {
+  padding: 10px 20px;
+  background: #66c2ff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  border-radius: 0 50px 50px 0;
+  transition: background 0.3s;
+}
+
+.pill-button:hover {
+  background: #4aa8e0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .card-large {
+    margin-left: 150px;
+  }
+}
+
+@media (max-width: 900px) {
+  .what-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .image-stack {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 0;
+  }
+
+  .wcard,
+  .card-large,
+  .card-small {
+    position: static;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    height: auto;
+  }
+
+  .what-text {
+    text-align: center;
+  }
+
+  .pill-container {
+    flex-direction: column;
+    border-radius: 20px;
+    max-width: 90%;
+  }
+
+  .pill-button {
+    border-radius: 0 0 20px 20px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 500px) {
+  .what-we-do {
+    padding: 80px 5%;
+  }
+
+  .what-text h2 {
+    font-size: 20px;
+  }
+
+  .what-text h3 {
+    font-size: 18px;
+  }
+
+  .more-explore {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+}

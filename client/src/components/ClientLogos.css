@@ -1,0 +1,60 @@
+.client-logo-section {
+  background-color: #F8F8F8;
+  overflow: hidden;
+  padding: 40px 0;
+}
+
+.logo-marquee {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.logo-track {
+  display: flex;
+  width: fit-content;
+  animation: scrollLogos 20s linear infinite;
+}
+
+.logo-item {
+  flex: 0 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-item img {
+  height: 140px;
+  width: auto;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.logo-item img:hover {
+  filter: grayscale(0%);
+}
+
+@keyframes scrollLogos {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+button {
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+  animation: bounce 0.4s ease;
+  cursor: pointer;
+}
+
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-6px); }
+  60%  { transform: translateY(2px); }
+  100% { transform: translateY(0); }
+}
