@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import "./AdminLogin.css";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth"; 
+import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
 import { app } from "../firebase"; 
-import { useNavigate } from "react-router-dom"; // ✅ Import navigate hook
+import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const auth = getAuth(app);
-  const navigate = useNavigate(); // ✅ Initialize navigate
+  const db = getFirestore(app);
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -23,15 +23,25 @@ function AdminLogin() {
     setLoading(true);
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      // console.log("User logged in:", userCredential.user);
-      // alert("Login successful ✅");
+      // Query the 'admins' collection for a matching email and password
+      const q = query(
+        collection(db, "admins"),
+        where("email", "==", email),
+        where("password", "==", password) // 🔒 Insecure! Consider hashing
+      );
 
-      navigate("/admin-dashboard"); // ✅ Redirect to AdminDashboard route
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        // Admin found
+        navigate("/admin-dashboard");
+      } else {
+        alert("Invalid email or password.");
+      }
 
     } catch (error) {
       console.error("Login error:", error);
-      alert(error.message);
+      alert("Something went wrong. Please try again.");
     }
 
     setLoading(false);
