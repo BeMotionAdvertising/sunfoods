@@ -46,7 +46,7 @@ function AdminLogin() {
         localStorage.setItem("adminLoggedIn", "true");
 
         console.log("Login successful, redirecting to dashboard...");
-        navigate("/admin/dashboard", { replace: true }); // ✅ Correct redirect path
+        navigate("/admin-dashboard", { replace: true }); // ✅ Correct redirect path
       } else {
         alert("Invalid email or password.");
       }
