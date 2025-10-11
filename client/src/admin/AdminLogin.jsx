@@ -43,7 +43,7 @@ function AdminLogin() {
       const querySnapshot = await getDocs(q);
       console.log("Query result count:", querySnapshot.size);
 
-    if (!querySnapshot.empty) {
+    if (querySnapshot.size == 1) {
   localStorage.setItem("adminLoggedIn", "true"); 
   console.log("Redirecting to dashboard...");
   navigate("/admin-dashboard", { replace: true });
