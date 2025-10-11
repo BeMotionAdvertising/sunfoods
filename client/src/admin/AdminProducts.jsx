@@ -127,7 +127,7 @@ const handleThumbnailsChange = (e) => {
       fetchProducts();
     } catch (error) {
       console.error(error);
-      setMsg("Error saving product. Try again.");
+      setMsg("Image size should not exceed 300 KB. Try again.");
     } finally {
       setUploading(false);
     }

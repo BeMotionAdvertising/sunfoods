@@ -73,10 +73,11 @@ function Home() {
       <div className="quality-container" data-aos="fade-right" >
    <div className="quality-cards">
   <div className="card" data-aos="fade-right" data-aos-delay="200">
-    <img src="/assets/home/quality1.png" alt="Basket Chat Puri" />
-    <h4>Basket Chat Puri</h4>
-    <p>Delicious and crispy Basket Chat Puri, <br/> perfect for a tasty snack <br/> anytime.</p>
-    <a href='/product' className="learn-btn">Learn More</a>
+    <img src="/assets/home/product3.png" alt="Rava, Sheera, Mohan Thal" />
+    <h4>Rava, Sheera, Mohan Thal</h4>
+<p>Indulge in our rich and flavorful Rava, Sheera, and Mohan Thal – <br/> perfect for sweet cravings anytime.</p>
+<a href='/product' className="learn-btn">Learn More</a>
+
   </div>
   <div className="card" data-aos="fade-right" data-aos-delay="400">
     <img src="/assets/home/quality2.png" alt="Pav Bhaji" />
