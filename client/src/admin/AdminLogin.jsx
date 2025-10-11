@@ -43,12 +43,14 @@ function AdminLogin() {
       const querySnapshot = await getDocs(q);
       console.log("Query result count:", querySnapshot.size);
 
-      if (!querySnapshot.empty) {
-        alert("Login successful!");
-        navigate("/admin-dashboard");
-      } else {
-        alert("Invalid email or password.");
-      }
+    if (!querySnapshot.empty) {
+  localStorage.setItem("adminLoggedIn", "true"); // save login state
+  alert("Login successful!");
+  navigate("/admin-dashboard", { replace: true }); // redirect to dashboard
+} else {
+  alert("Invalid email or password.");
+}
+
     } catch (error) {
       console.error("Login error:", error);
       alert("Something went wrong. Please try again.");
