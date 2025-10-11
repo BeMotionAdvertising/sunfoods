@@ -44,10 +44,11 @@ function AdminLogin() {
       console.log("Query result count:", querySnapshot.size);
 
     if (!querySnapshot.empty) {
-  localStorage.setItem("adminLoggedIn", "true"); // save login state
-  alert("Login successful!");
-  navigate("/admin-dashboard", { replace: true }); // redirect to dashboard
-} else {
+  localStorage.setItem("adminLoggedIn", "true"); 
+  console.log("Redirecting to dashboard...");
+  navigate("/admin-dashboard", { replace: true });
+}
+ else {
   alert("Invalid email or password.");
 }
 
