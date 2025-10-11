@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import "./AdminLogin.css";
-import { getFirestore, collection, query, where, getDocs } from "firebase/firestore";
-import { app } from "../firebase"; 
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+import { app } from "../firebase";
 import { useNavigate } from "react-router-dom";
 
 function AdminLogin() {
@@ -23,22 +29,26 @@ function AdminLogin() {
     setLoading(true);
 
     try {
-      // Query the 'admins' collection for a matching email and password
+      console.log("Firestore connected:", db);
+      console.log("Email:", email);
+      console.log("Password:", password);
+
+      // Firestore query
       const q = query(
         collection(db, "admins"),
         where("email", "==", email),
-        where("password", "==", password) // 🔒 Insecure! Consider hashing
+        where("password", "==", password) // ⚠️ insecure (for testing only)
       );
 
       const querySnapshot = await getDocs(q);
+      console.log("Query result count:", querySnapshot.size);
 
       if (!querySnapshot.empty) {
-        // Admin found
+        alert("Login successful!");
         navigate("/admin-dashboard");
       } else {
         alert("Invalid email or password.");
       }
-
     } catch (error) {
       console.error("Login error:", error);
       alert("Something went wrong. Please try again.");
@@ -59,6 +69,8 @@ function AdminLogin() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
+              autoComplete="username"
+              required
             />
           </div>
 
@@ -69,6 +81,8 @@ function AdminLogin() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Enter your password"
+              autoComplete="current-password"
+              required
             />
           </div>
 
