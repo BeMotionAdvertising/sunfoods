@@ -42,12 +42,12 @@ function AdminLogin() {
 
       const querySnapshot = await getDocs(q);
       console.log("Query result count:", querySnapshot.size);
-
-    if (querySnapshot.size == 1) {
-  localStorage.setItem("adminLoggedIn", "true"); 
-  console.log("Redirecting to dashboard...");
-  navigate("/admin-dashboard", { replace: true });
+if (querySnapshot.size === 1) {
+  localStorage.setItem("adminLoggedIn", "true");
+  console.log("Redirecting to admin dashboard...");
+  navigate("/admin", { replace: true }); // <-- use /admin
 }
+
  else {
   alert("Invalid email or password.");
 }
