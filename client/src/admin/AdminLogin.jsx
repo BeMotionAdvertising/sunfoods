@@ -13,6 +13,7 @@ function AdminLogin() {
   const DEFAULT_PASSWORD = "admin@123";
 
   const handleLogin = (e) => {
+      navigate("/admin-dashboard");
     e.preventDefault();
     const emailTrim = email.trim();
     const passwordTrim = password.trim();
