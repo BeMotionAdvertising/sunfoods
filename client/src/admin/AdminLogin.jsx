@@ -21,7 +21,7 @@ function AdminLogin() {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!email || !password) {
+    if (!email.trim() || !password.trim()) {
       alert("Please enter both email and password.");
       return;
     }
@@ -30,40 +30,39 @@ function AdminLogin() {
 
     try {
       console.log("Firestore connected:", db);
-      console.log("Email:", email);
-      console.log("Password:", password);
 
-      // Firestore query
+      // Firestore query to match admin credentials
       const q = query(
         collection(db, "admins"),
-        where("email", "==", email),
-        where("password", "==", password) // ⚠️ insecure (for testing only)
+        where("email", "==", email.trim()),
+        where("password", "==", password.trim()) // ⚠️ For testing only (use hashed passwords in production)
       );
 
       const querySnapshot = await getDocs(q);
       console.log("Query result count:", querySnapshot.size);
-if (querySnapshot.size === 1) {
-  localStorage.setItem("adminLoggedIn", "true");
-  console.log("Redirecting to admin dashboard...");
-  navigate("/admin", { replace: true }); // <-- use /admin
-}
 
- else {
-  alert("Invalid email or password.");
-}
+      if (!querySnapshot.empty) {
+        // ✅ Admin found — save login state
+        localStorage.setItem("adminLoggedIn", "true");
 
+        console.log("Login successful, redirecting to dashboard...");
+        navigate("/admin/dashboard", { replace: true }); // ✅ Correct redirect path
+      } else {
+        alert("Invalid email or password.");
+      }
     } catch (error) {
       console.error("Login error:", error);
-      alert("Something went wrong. Please try again.");
+      alert("Something went wrong. Please try again later.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   return (
     <div className="login-page">
       <div className="login-box">
         <h2>Admin Login</h2>
+
         <form onSubmit={handleLogin}>
           <div className="input-group">
             <label>Email</label>
