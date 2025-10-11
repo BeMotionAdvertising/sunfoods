@@ -1,6 +1,6 @@
 import './App.css';
 import { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -21,9 +21,7 @@ import AdminSliders from './admin/AdminSliders';
 import AdminContacts from './admin/AdminContacts';
 import AdminAvailability from './admin/AdminAvailability';
 import AdminLayout from './admin/AdminLayout';
-import ProtectedRoute from './ProtectedRoute';
 
-// Layout wrapper for Navbar/Footer visibility
 function LayoutWrapper({ children }) {
   const location = useLocation();
   const isAdminRoute = location.pathname.startsWith('/admin');
@@ -52,24 +50,49 @@ function App() {
           <Route path="/contact" element={<GetInTouch />} />
           <Route path="/product-details/:id" element={<ProductDetails />} />
 
-          {/* 🔐 Admin Login (public) */}
+          {/* 🔑 Admin Routes (No Protection) */}
           <Route path="/admin" element={<AdminLogin />} />
 
-          {/* 🧭 Admin Protected Routes */}
           <Route
-            path="/admin/*"
+            path="/admin-dashboard"
             element={
-              <ProtectedRoute>
-                <AdminLayout />
-              </ProtectedRoute>
+              <AdminLayout>
+                <AdminDashboard />
+              </AdminLayout>
             }
-          >
-            <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="products" element={<AdminProducts />} />
-            <Route path="sliders" element={<AdminSliders />} />
-            <Route path="contacts" element={<AdminContacts />} />
-            <Route path="availability" element={<AdminAvailability />} />
-          </Route>
+          />
+          <Route
+            path="/admin-products"
+            element={
+              <AdminLayout>
+                <AdminProducts />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/admin-sliders"
+            element={
+              <AdminLayout>
+                <AdminSliders />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/admin-contacts"
+            element={
+              <AdminLayout>
+                <AdminContacts />
+              </AdminLayout>
+            }
+          />
+          <Route
+            path="/admin-availability"
+            element={
+              <AdminLayout>
+                <AdminAvailability />
+              </AdminLayout>
+            }
+          />
         </Routes>
       </LayoutWrapper>
     </Router>
